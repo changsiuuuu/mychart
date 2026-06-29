@@ -43,3 +43,44 @@ helm repo index docs/ --url https://changsiuuuu.github.io/mychart
 pages build and deployment 이 자동으로 수행
 
 다음에 새로운 chart를 추가하거나 기존 chart를 수정해서 /docs 안에 내용을 업데이트 한 후에 master 브랜치로  push 하면 이 동작은 자동으로 실행된다.
+
+그럼 deploy에 
+https://changsiuuuu.github.io/mychart/
+이런 주소가 뜨는데
+정적인 index.html 페이지 xxx.html 페이지를 넣어두면 웹서버처럼 동작하는게 github pages 이다..
+
+
+### 저장소를 사용해보면
+
+```bash
+helm repo remove my-repo
+helm repo add my-repo https://changsiuuuu.github.io/mychart/
+
+helm repo update
+helm search repo my-repo
+
+# helm chart를 배포해보기
+helm install member-release my-repo/member-app -n helm01 --create-namespace
+
+# 확인해보기
+k get pod,svc -n helm01
+
+# 배포 취소하려면
+helm uninstall member-release -n helm01
+kubectl delete ns helm01
+
+# helm01_member 의 chart.yaml 파일을 수정했을때
+# helm package, index를 다시 실행 후 add commit push 한다
+# 만든 chart를 압축해서 docs/ 폴더 안에 저장
+helm package charts/helm01_member -d docs/
+
+# index.yaml 파일을 docs 폴더에 생성하기
+helm repo index docs/ --url https://changsiuuuu.github.io/mychart
+
+git add ./docs
+git commit -m "release: member-app chart v1.0.1 package"
+git push origin master
+
+helm repo update
+helm search repo my-repo
+```
