@@ -1,0 +1,13 @@
+apiVersion: v1
+entries:
+  member-app:
+  - apiVersion: 1.0.0
+    created: "2026-06-29T11:07:01.343299952+09:00"
+    description: fastapi member application
+    digest: 96033439108081b8ffb4e2995f474d7f1e80af7387656fe7dda88d2ccf57a5ce
+    name: member-app
+    type: application
+    urls:
+    - https://changsiuuuu.github.io/mychart/member-app-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-06-29T11:07:01.342927405+09:00"
