@@ -3,5 +3,5 @@ apiVersion: v2
 name: member-app
 description: fastapi member application
 type: application
-version: 0.1.0        # helm chart 자체 버전 (따옴표 안씀)
-apiVersion: "1.0.0"   # chart 로 배포하는 app의 버전
+version: 0.1.1        # helm chart 자체 버전 (따옴표 안씀)
+apiVersion: "1.0.1"   # chart 로 배포하는 app의 버전
