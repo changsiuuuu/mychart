@@ -1,0 +1,14 @@
+# templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Chart.Name }}-service"
+spec:
+  # values.yaml 파일에 있는 내용을 참조해서 전달하기
+  type: {{ .Values.service.type }}
+  selector:
+    app: {{ .Chart.Name }}
+  ports:
+    - protocol: TCP
+      port: {{ .Values.service.port }}
+      targetPort: {{ .Values.containerPort }}
