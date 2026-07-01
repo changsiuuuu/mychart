@@ -83,4 +83,25 @@ git push origin master
 
 helm repo update
 helm search repo my-repo
+
+helm install market-release my-repo/market-app -n helm02
+
+# 확인하기
+helm ls -n helm02
+k get pod,svc -n helm02
+
+# values.yaml 파일의 특정 변수를 override해서 수정 배포하기
+helm upgrade market-release my-repo/market-app -n helm02 --set replicaCount=3
+
+# 배포 히스토리 목록
+helm history market-release -n helm02
+
+# 리비전 1로 롤백시키고 싶다 
+helm rollback market-release 1 -n helm02
+
+# 확인 
+helm history market-release -n helm02
+
+# pod 개수도 확인
+k get pod -n helm02
 ```
